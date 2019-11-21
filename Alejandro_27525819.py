@@ -19,7 +19,6 @@ def polinomio_lagrange(X,Y):
     # Ordena el par (x, y) en forma ascendente por x.
     z = list(zip(X,Y))
     z.sort(key = lambda x: x[0])
-    print (z)
     X, Y  = zip(*z)
 
     def p(x):
