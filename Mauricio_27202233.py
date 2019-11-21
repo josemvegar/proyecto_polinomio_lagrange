@@ -13,21 +13,28 @@ def polinomio_lagrange(X, Y):
     X: lista de valores de la variable independiente.
     Y: lista de valores de la variable dependiente.
     """
-
-     if len(X) != len(Y): raise ValueError("Dimensiones diferentes en X e Y.")
+    
+    if len(X) != len(Y): raise ValueError("Dimensiones diferentes en X e Y.")
 
     # Ordena el par (x, y) en forma ascendente por x.
     pares = list(zip(X, Y))
     pares.sort(key = lambda x: x[0])
     X, Y  = zip(*pares)
-
-     def polinomio(x):
-        pass
-
+    
+    def polinomio(x):
+        Pn = 0.0
+        for i in range(len(X)):
+            Lx = 1.0
+            for k in range(len(X)):
+                if i == k: continue
+                Lx *= (x - X[k])/(X[i] - X[k])
+            Pn += (Lx * Y[k])
+        return Pn
     return polinomio
 
 
 if __name__ == '__main__':
-    # Pruebe aquí su Polinomio de Lagrange ...
-
-    pass
+    X=[2,1,-1]
+    Y=[3,-2,1]
+    Pn=polinomio_lagrange(X,Y)
+    print(Pn(2))
